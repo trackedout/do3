@@ -41,6 +41,7 @@ export default function Root() {
 					name="viewport"
 					content="width=device-width, initial-scale=1"
 				/>
+				<link rel="icon" href="/favicon.ico" sizes="any" />
 				<link
 					rel="preload"
 					href="/fonts/advent-pro-700.ttf"
