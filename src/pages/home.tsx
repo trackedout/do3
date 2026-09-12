@@ -51,9 +51,9 @@ const runs: {
 	{
 		hermit: "Grian",
 		run: "9.2",
-		video: { label: "HC11 E45", href: "/", state: "linked" },
+		video: { label: "HC11 E45", state: "notFound" },
 		vod: null,
-		observed: { label: "Tango VOD 9/12", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/12", state: "notFound" },
 		date: new Date("2026-12-09T00:00:00")
 	},
 	{
@@ -76,8 +76,8 @@ const runs: {
 		hermit: "TangoTek",
 		run: "10.1",
 		video: { label: "HC11 E46", href: "/", state: "linked" },
-		vod: { label: "Tango VOD 9/13", href: "/", state: "linked" },
-		observed: { label: "Etho VOD 9/13", href: "/", state: "linked" },
+		vod: { label: "Tango VOD 9/13", state: "notFound" },
+		observed: null,
 		date: new Date("2026-12-10T00:00:00")
 	},
 	{
@@ -101,7 +101,7 @@ const runs: {
 		run: "10.4",
 		video: { label: "HC11 E48", href: "/", state: "linked" },
 		vod: { label: "Impulse VOD 9/15", href: "/", state: "linked" },
-		observed: { label: "Skizz VOD 9/15", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/15", href: "/", state: "linked" },
 		date: new Date("2026-12-13T00:00:00")
 	},
 	{
@@ -141,7 +141,7 @@ const runs: {
 		run: "10.9",
 		video: { label: "HC11 E50", href: "/", state: "linked" },
 		vod: null,
-		observed: { label: "Cleo VOD 9/17", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/17", href: "/", state: "linked" },
 		date: new Date("2026-12-18T00:00:00")
 	},
 	{
@@ -157,7 +157,7 @@ const runs: {
 		run: "11.2",
 		video: { label: "HC11 E51", href: "/", state: "linked" },
 		vod: null,
-		observed: { label: "Gem VOD 9/18", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/18", href: "/", state: "linked" },
 		date: new Date("2026-12-20T00:00:00")
 	},
 	{
@@ -181,7 +181,7 @@ const runs: {
 		run: "11.5",
 		video: { label: "HC11 E52", href: "/", state: "linked" },
 		vod: null,
-		observed: { label: "Cub VOD 9/20", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/20", href: "/", state: "linked" },
 		date: new Date("2026-12-23T00:00:00")
 	},
 	{
@@ -213,7 +213,7 @@ const runs: {
 		run: "11.9",
 		video: { label: "HC11 E53", href: "/", state: "linked" },
 		vod: null,
-		observed: { label: "Joe VOD 9/22", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/22", href: "/", state: "linked" },
 		date: new Date("2026-12-27T00:00:00")
 	},
 	{
@@ -229,7 +229,7 @@ const runs: {
 		run: "12.2",
 		video: null,
 		vod: null,
-		observed: { label: "Jevin VOD 9/23", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/23", href: "/", state: "linked" },
 		date: new Date("2026-12-29T00:00:00")
 	},
 	{
@@ -245,7 +245,7 @@ const runs: {
 		run: "12.4",
 		video: { label: "HC11 E55", href: "/", state: "linked" },
 		vod: null,
-		observed: { label: "xB VOD 9/24", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/24", href: "/", state: "linked" },
 		date: new Date("2026-12-31T00:00:00")
 	},
 	{
@@ -269,7 +269,7 @@ const runs: {
 		run: "12.7",
 		video: null,
 		vod: { label: "Tango VOD 9/25", href: "/", state: "linked" },
-		observed: { label: "Etho VOD 9/25", href: "/", state: "linked" },
+		observed: null,
 		date: new Date("2027-01-03T00:00:00")
 	},
 	{
@@ -285,7 +285,7 @@ const runs: {
 		run: "12.9",
 		video: { label: "HC11 E57", href: "/", state: "linked" },
 		vod: null,
-		observed: { label: "Pearl VOD 9/26", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/26", href: "/", state: "linked" },
 		date: new Date("2027-01-05T00:00:00")
 	},
 	{
