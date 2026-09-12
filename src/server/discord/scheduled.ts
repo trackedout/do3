@@ -8,7 +8,9 @@ import { getDb } from "../db"
 import { discordVideos } from "../db/schema"
 
 export const checkYoutube = async (env: Cloudflare.Env) => {
-	await Promise.allSettled(
+	console.log(`Checking YouTube: ${new Date().toISOString()}`)
+
+	const results = await Promise.allSettled(
 		hermits.map(async (hermit) => {
 			await checkChannel(env, hermit.channelId, hermit.name, "video")
 			if (hermit.secondChannelId) {
@@ -20,6 +22,15 @@ export const checkYoutube = async (env: Cloudflare.Env) => {
 				)
 			}
 		})
+	)
+	const failures = results.filter((result) => result.status === "rejected")
+
+	if (failures.length) {
+		console.error("YouTube check failures:", failures)
+	}
+
+	console.log(
+		`Finished YouTube check: ${results.length - failures.length}/${results.length} hermits checked`
 	)
 }
 
