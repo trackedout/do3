@@ -20,7 +20,10 @@
 		"db:migrate:remote": "wrangler d1 migrations apply DATABASE_NAME --remote"
 	},
 	"dependencies": {
+		"@base-ui/react": "1.8.0",
 		"@tanstack/react-query": "5.102.8",
+		"@tanstack/react-table": "9.2.4",
+		"class-variance-authority": "0.7.1",
 		"drizzle-orm": "0.45.2",
 		"hono": "4.13.0",
 		"isbot": "5.2.2",

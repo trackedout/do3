@@ -1,0 +1,23 @@
+.shell {
+	min-width: var(--layout-mobile-min-width);
+	min-height: var(--size-screen);
+	background: linear-gradient(
+		var(--gradient-shell-angle),
+		var(--color-background) var(--gradient-stop-start),
+		var(--color-gradient-end) var(--gradient-stop-surface),
+		var(--color-gradient-mid) var(--gradient-stop-mid),
+		var(--color-gradient-end) var(--gradient-stop-end)
+	);
+	color: var(--color-foreground);
+	overflow: hidden;
+	padding-bottom: var(--layout-page-bottom);
+}
+
+.content {
+	display: flex;
+	height: calc(var(--layout-content-height) - var(--layout-page-bottom));
+	min-height: var(--layout-content-min-height);
+	flex-direction: column;
+	gap: var(--space-10);
+	padding: var(--space-0) var(--space-page-x);
+}

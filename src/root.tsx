@@ -1,7 +1,26 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useState } from "react"
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router"
+import {
+	Links,
+	Meta,
+	Outlet,
+	Scripts,
+	ScrollRestoration,
+	useLoaderData
+} from "react-router"
+import {
+	getSpoilerModeFromCookie,
+	SpoilerModeProvider
+} from "~/hooks/useSpoilerMode"
 import "./globals.css"
+
+export function loader({ request }: { request: Request }) {
+	return {
+		spoilerMode: getSpoilerModeFromCookie(
+			request.headers.get("cookie") ?? ""
+		)
+	}
+}
 
 export function meta() {
 	return [
@@ -11,6 +30,7 @@ export function meta() {
 }
 
 export default function Root() {
+	const loaderData = useLoaderData<typeof loader>()
 	const [queryClient] = useState(() => new QueryClient())
 
 	return (
@@ -21,12 +41,44 @@ export default function Root() {
 					name="viewport"
 					content="width=device-width, initial-scale=1"
 				/>
+				<link
+					rel="preload"
+					href="/fonts/advent-pro-700.ttf"
+					as="font"
+					type="font/ttf"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preload"
+					href="/fonts/lexend-300.ttf"
+					as="font"
+					type="font/ttf"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preload"
+					href="/fonts/lexend-500.ttf"
+					as="font"
+					type="font/ttf"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preload"
+					href="/fonts/lexend-700.ttf"
+					as="font"
+					type="font/ttf"
+					crossOrigin="anonymous"
+				/>
 				<Meta />
 				<Links />
 			</head>
 			<body>
 				<QueryClientProvider client={queryClient}>
-					<Outlet />
+					<SpoilerModeProvider
+						initialSpoilerMode={loaderData.spoilerMode}
+					>
+						<Outlet />
+					</SpoilerModeProvider>
 				</QueryClientProvider>
 				<ScrollRestoration />
 				<Scripts />

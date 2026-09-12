@@ -1,7 +1,196 @@
-@import "tailwindcss";
+@font-face {
+	font-family: "Advent Pro";
+	font-style: normal;
+	font-weight: 700;
+	font-display: block;
+	src: url("/fonts/advent-pro-700.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Lexend";
+	font-style: normal;
+	font-weight: 300;
+	font-display: block;
+	src: url("/fonts/lexend-300.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Lexend";
+	font-style: normal;
+	font-weight: 500;
+	font-display: block;
+	src: url("/fonts/lexend-500.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Lexend";
+	font-style: normal;
+	font-weight: 700;
+	font-display: block;
+	src: url("/fonts/lexend-700.ttf") format("truetype");
+}
+
+:root {
+	color-scheme: dark;
+	--color-transparent: transparent;
+	--color-background: #000000;
+	--color-background-raised: #020b07;
+	--color-surface: #02100a;
+	--color-surface-raised: #041a11;
+	--color-surface-active: #063622;
+	--color-surface-warning: #031710;
+	--color-surface-disabled: #1d2622;
+	--color-disabled: #8c9892;
+	--color-disabled-border: #4a5650;
+	--color-gradient-mid: #090a09;
+	--color-gradient-end: #00150c;
+	--color-foreground: #ffffff;
+	--color-muted: #789f8e;
+	--color-placeholder: #2d5946;
+	--color-primary: #168656;
+	--color-primary-soft: #89c9ab;
+	--color-primary-muted: #9abaa1;
+	--color-link: #9dffd5;
+	--color-secondary: #ffff41;
+	--color-border: #062c1c;
+	--color-border-subtle: #0b3a26;
+	--color-ring: #9dffd5;
+	--color-swatch: #408768;
+	--font-display: "Advent Pro", ui-sans-serif, system-ui, sans-serif;
+	--font-body: "Lexend", ui-sans-serif, system-ui, sans-serif;
+	--font-weight-light: 300;
+	--font-weight-medium: 500;
+	--font-weight-bold: 700;
+	--font-size-11: 0.6875rem;
+	--font-size-18: 1rem;
+	--font-size-20: 1.125rem;
+	--font-size-28: 1.5rem;
+	--font-size-nav-sm: clamp(0.875rem, 1.25vw, 1.5rem);
+	--font-size-nav-md: clamp(1rem, 1.45vw, 1.7rem);
+	--font-size-nav-lg: clamp(1.1rem, 1.7vw, 1.9rem);
+	--font-size-nav-xl: clamp(1.35rem, 2.18vw, 2.45rem);
+	--font-size-brand: clamp(1.35rem, 2.15vw, 2.45rem);
+	--font-size-sup: 0.645em;
+	--line-height-none: 1;
+	--letter-spacing-tight: -0.02em;
+	--size-0: 0;
+	--size-1: 0.0625rem;
+	--size-2: 0.125rem;
+	--size-3: 0.1875rem;
+	--size-4: 0.25rem;
+	--size-8: 0.5rem;
+	--size-10: 0.625rem;
+	--size-13: 0.8125rem;
+	--size-14: 0.875rem;
+	--size-15: 0.9375rem;
+	--size-16: 1rem;
+	--size-18: 1.125rem;
+	--size-20: 1.25rem;
+	--size-24: 1.5rem;
+	--size-27: 1.5rem;
+	--size-28: 1.5625rem;
+	--size-icon-search-width: 1.35rem;
+	--size-icon-search-height: 1.4rem;
+	--size-32: 1.75rem;
+	--size-40: 2.25rem;
+	--size-46: 2.5rem;
+	--size-53: 2.875rem;
+	--size-55: 3rem;
+	--size-60: 3.25rem;
+	--size-74: 4rem;
+	--size-120: 6.5rem;
+	--size-150: 8.5rem;
+	--size-160: 8.75rem;
+	--size-200: 11rem;
+	--size-250: 13.75rem;
+	--size-scrollbar: var(--size-10);
+	--size-1024: 64rem;
+	--size-full: 100%;
+	--size-screen: 100dvh;
+	--radius-md: var(--size-10);
+	--radius-lg: var(--size-20);
+	--space-0: var(--size-0);
+	--space-8: var(--size-8);
+	--space-10: var(--size-10);
+	--space-15: var(--size-15);
+	--space-16: var(--size-16);
+	--space-20: var(--size-16);
+	--space-search-inline: var(--size-16);
+	--space-search-icon-inset: var(--size-8);
+	--space-scrollbar-inset: var(--size-8);
+	--space-24: var(--size-24);
+	--space-30: 1.5rem;
+	--space-page-x: clamp(1.25rem, 3vw, 3rem);
+	--space-header-y: clamp(1.15rem, 2vw, 2rem);
+	--space-brand-gap: clamp(0.625rem, 1.2vw, 1.25rem);
+	--space-nav-gap: clamp(1rem, 2.2vw, 2.5rem);
+	--layout-header-height: clamp(4.25rem, 9.2dvh, var(--size-120));
+	--layout-nav-height: clamp(4.25rem, 9.2dvh, var(--size-120));
+	--layout-content-height: calc(
+		var(--size-screen) - var(--layout-header-height) -
+			var(--layout-nav-height)
+	);
+	--layout-content-min-height: 28rem;
+	--layout-page-bottom: var(--size-24);
+	--layout-mobile-min-width: var(--size-1024);
+	--layout-nav-columns: 1fr 1fr 1fr 1.5fr 1fr 1fr 1fr;
+	--layout-toolbar-columns: minmax(16rem, 1fr) var(--size-160) var(--size-250);
+	--gradient-shell-angle: 0deg;
+	--gradient-stop-start: 0%;
+	--gradient-stop-surface: 33.654%;
+	--gradient-stop-mid: 66.346%;
+	--gradient-stop-end: 100%;
+	--duration-fast: 160ms;
+	--motion-lift: -0.0625rem;
+	--motion-press: 0.0625rem;
+	--motion-menu-align-y: var(--size-8);
+	--opacity-full: 1;
+	--flex-none: 0 0 auto;
+	--flex-fill: 1;
+}
+
+* {
+	box-sizing: border-box;
+}
 
 html,
 body {
-	margin: 0;
-	min-height: 100%;
+	margin: var(--space-0);
+	min-height: var(--size-full);
+	background: var(--color-background);
+}
+
+body {
+	font-family: var(--font-body);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+:focus-visible {
+	outline: var(--size-3) solid var(--color-ring);
+	outline-offset: var(--size-3);
+}
+
+.sr-only {
+	position: absolute;
+	width: var(--size-1);
+	height: var(--size-1);
+	padding: var(--space-0);
+	margin: calc(var(--size-1) * -1);
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: var(--size-0);
 }

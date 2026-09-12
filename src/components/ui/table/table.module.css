@@ -1,0 +1,150 @@
+.panel {
+	display: flex;
+	min-height: var(--size-0);
+	flex: var(--flex-fill);
+	flex-direction: column;
+	border: var(--size-4) solid var(--color-border);
+	border-radius: var(--radius-lg);
+	background: var(--color-surface);
+	overflow: hidden;
+	padding: var(--space-10);
+}
+
+.summary {
+	display: flex;
+	min-height: var(--size-53);
+	align-items: center;
+	gap: var(--space-30);
+	border-radius: var(--radius-md);
+	background: var(--color-surface-raised);
+	color: var(--color-foreground);
+	font-family: var(--font-body);
+	font-size: var(--font-size-18);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-height-none);
+	padding: var(--space-15) var(--space-16);
+}
+
+.scrollRoot {
+	position: relative;
+	min-height: var(--size-0);
+	flex: var(--flex-fill);
+	overflow: hidden;
+}
+
+.viewport {
+	width: var(--size-full);
+	height: var(--size-full);
+}
+
+.table {
+	width: var(--size-full);
+	border-collapse: collapse;
+	font-family: var(--font-body);
+	table-layout: fixed;
+}
+
+.table th,
+.table td {
+	border-bottom: var(--size-2) solid var(--color-border-subtle);
+	text-align: left;
+	vertical-align: middle;
+}
+
+.cell {
+	min-width: var(--size-0);
+}
+
+.table thead th {
+	height: var(--size-55);
+	padding: var(--space-15) var(--space-16);
+	color: var(--color-muted);
+	font-size: var(--font-size-18);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-height-none);
+}
+
+.sortButton {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-8);
+	border: var(--size-0);
+	padding: var(--space-0);
+	background: var(--color-transparent);
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+}
+
+.sortIndicator {
+	display: inline-block;
+	min-width: var(--size-13);
+	color: var(--color-link);
+}
+
+.table tbody th,
+.table tbody td {
+	height: var(--size-74);
+	padding: var(--space-20) var(--space-16);
+	color: var(--color-foreground);
+	font-size: var(--font-size-18);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-height-none);
+}
+
+.table tbody th,
+.table tbody .number {
+	font-size: var(--font-size-20);
+}
+
+.entity {
+	width: var(--size-250);
+}
+
+.number {
+	width: var(--size-150);
+}
+
+.date {
+	width: var(--size-200);
+}
+
+.fluid {
+	width: auto;
+}
+
+.default {
+	color: var(--color-foreground);
+}
+
+.muted {
+	color: var(--color-muted);
+}
+
+.accent {
+	color: var(--color-link);
+}
+
+.scrollbar {
+	position: absolute;
+	top: var(--space-scrollbar-inset);
+	right: var(--space-scrollbar-inset);
+	bottom: var(--space-scrollbar-inset);
+	display: flex;
+	width: var(--size-scrollbar);
+	justify-content: center;
+	border-radius: var(--radius-md);
+	background: var(--color-surface-raised);
+	opacity: var(--opacity-full);
+	visibility: visible;
+}
+
+.thumb {
+	width: var(--size-scrollbar);
+	border-radius: var(--radius-md);
+	background: var(--color-primary);
+}
+
+.corner {
+	background: var(--color-surface);
+}

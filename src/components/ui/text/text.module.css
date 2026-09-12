@@ -1,0 +1,35 @@
+.markerLabel {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-20);
+}
+
+.marker {
+	display: inline-grid;
+	width: var(--size-32);
+	height: var(--size-32);
+	place-items: center;
+	flex: var(--flex-none);
+	overflow: hidden;
+}
+
+.marker img {
+	width: var(--size-full);
+	height: var(--size-full);
+	object-fit: cover;
+}
+
+.muted {
+	color: var(--color-muted);
+}
+
+.link {
+	color: var(--color-link);
+	text-decoration: underline;
+	text-underline-position: from-font;
+}
+
+.highlight {
+	background: var(--color-transparent);
+	color: var(--color-secondary);
+}
