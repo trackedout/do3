@@ -8,8 +8,9 @@ A public viewer guide for Decked Out 3, focused on searchable, sortable run info
 - React Router
 - React Query
 - Hono
+- Carbon Discord bot framework
 - Drizzle
-- Cloudflare Workers + D1
+- Cloudflare Workers + D1 + Cron Triggers
 - Base UI
 - TanStack React Table
 - CSS Modules
@@ -34,6 +35,31 @@ component.module.css.d.ts
 ```
 
 Variants use `class-variance-authority`, with variant names mapped to real CSS Module classes. Global CSS is reserved for design tokens, local font faces, and reset styles.
+
+## Discord bot
+
+The Discord bot is hosted inside the same Cloudflare Worker as the site.
+
+- Interaction endpoint: `https://do3.trackedout.org/api/discord`
+- Carbon deploy route: `https://do3.trackedout.org/api/discord/deploy?secret=do3`
+- Commands live in `src/server/discord/commands`
+- Shared bot code lives in `src/server/discord`
+- YouTube video dedupe uses the `discord_videos` D1 table
+- A Cloudflare Cron Trigger runs every minute and calls `checkYoutube`
+
+Required Worker secrets:
+
+```txt
+DISCORD_BOT_TOKEN
+DISCORD_CLIENT_SECRET
+```
+
+Apply D1 migrations:
+
+```bash
+bun run db:migrate:local
+bun run db:migrate:remote
+```
 
 ## Development
 
