@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "site-template",
+	"name": "do3",
 	"main": "./src/worker.ts",
 	"compatibility_date": "2026-07-27",
 	"compatibility_flags": ["nodejs_compat"],
@@ -10,8 +10,8 @@
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "site-template",
-			"database_id": "00000000-0000-0000-0000-000000000000",
+			"database_name": "do3",
+			"database_id": "916a094b-705d-4a8e-a621-d99b1ad60da1",
 			"migrations_dir": "drizzle/migrations"
 		}
 	]
