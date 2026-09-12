@@ -71,7 +71,7 @@ const checkChannel = async (
 	)
 }
 
-const sendAlert = async (
+export const sendAlert = async (
 	env: Cloudflare.Env,
 	video: Video,
 	type: RoleType,

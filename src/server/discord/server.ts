@@ -1,5 +1,6 @@
 import { Client } from "@buape/carbon"
 import { createHandler } from "@buape/carbon/adapters/fetch"
+import { DevCommandGroup } from "./commands/dev"
 import { LatestVideoCommand } from "./commands/latest-video"
 import { PingCommand } from "./commands/ping"
 
@@ -53,7 +54,11 @@ export const getDiscordClient = (env: Cloudflare.Env) => {
 		}
 
 		client = new Client(options, {
-			commands: [new PingCommand(), new LatestVideoCommand()]
+			commands: [
+				new PingCommand(),
+				new LatestVideoCommand(),
+				new DevCommandGroup(env)
+			]
 		})
 	}
 
