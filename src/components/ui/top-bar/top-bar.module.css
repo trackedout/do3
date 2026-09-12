@@ -3,16 +3,16 @@
 	height: var(--layout-header-height);
 	align-items: center;
 	justify-content: space-between;
-	padding: var(--space-header-y) var(--space-page-x);
+	padding: var(--space-fluid-md) var(--space-page-x);
 }
 
 .brand {
 	display: inline-flex;
 	align-items: center;
-	gap: var(--space-brand-gap);
+	gap: var(--space-fluid-sm);
 	color: var(--color-foreground);
 	font-family: var(--font-display);
-	font-size: var(--font-size-brand);
+	font-size: var(--font-size-fluid-xl);
 	font-weight: var(--font-weight-bold);
 	letter-spacing: var(--letter-spacing-tight);
 	line-height: var(--line-height-none);
@@ -39,5 +39,5 @@
 .menuIcon {
 	width: var(--size-46);
 	height: var(--size-32);
-	transform: translateY(var(--motion-menu-align-y));
+	transform: translateY(var(--size-8));
 }

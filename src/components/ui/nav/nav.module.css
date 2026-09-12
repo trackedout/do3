@@ -1,9 +1,9 @@
 .nav {
 	display: grid;
-	grid-template-columns: var(--layout-nav-columns);
+	grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr 1fr 1fr;
 	align-items: end;
 	justify-items: center;
-	gap: var(--space-nav-gap);
+	gap: var(--space-fluid-lg);
 	padding: var(--space-0) var(--space-page-x) var(--space-24);
 	font-family: var(--font-display);
 	font-weight: var(--font-weight-bold);
@@ -34,22 +34,22 @@
 }
 
 .sm {
-	font-size: var(--font-size-nav-sm);
+	font-size: var(--font-size-fluid-sm);
 }
 
 .md {
-	font-size: var(--font-size-nav-md);
+	font-size: var(--font-size-fluid-md);
 }
 
 .lg {
-	font-size: var(--font-size-nav-lg);
+	font-size: var(--font-size-fluid-lg);
 }
 
 .xl {
-	font-size: var(--font-size-nav-xl);
+	font-size: var(--font-size-fluid-xl);
 }
 
 .item sup {
-	font-size: var(--font-size-sup);
+	font-size: var(--font-size-relative-xs);
 	line-height: var(--line-height-none);
 }

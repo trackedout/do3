@@ -2,11 +2,11 @@
 	min-width: var(--layout-mobile-min-width);
 	min-height: var(--size-screen);
 	background: linear-gradient(
-		var(--gradient-shell-angle),
-		var(--color-background) var(--gradient-stop-start),
-		var(--color-gradient-end) var(--gradient-stop-surface),
-		var(--color-gradient-mid) var(--gradient-stop-mid),
-		var(--color-gradient-end) var(--gradient-stop-end)
+		0deg,
+		var(--color-background) 0%,
+		var(--color-gradient-end) 33.654%,
+		var(--color-gradient-mid) 66.346%,
+		var(--color-gradient-end) 100%
 	);
 	color: var(--color-foreground);
 	overflow: hidden;

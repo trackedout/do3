@@ -1,5 +1,5 @@
 .toolbar {
 	display: grid;
-	grid-template-columns: var(--layout-toolbar-columns);
+	grid-template-columns: minmax(16rem, 1fr) var(--size-160) var(--size-250);
 	gap: var(--space-10);
 }

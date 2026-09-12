@@ -86,7 +86,7 @@
 
 .sortIndicator {
 	display: inline-block;
-	min-width: var(--size-13);
+	min-width: var(--size-16);
 	color: var(--color-link);
 }
 
