@@ -1,6 +1,7 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "do3",
+	"account_id": "2a8c8a7f6aabdd77d97d7683febb108b",
 	"main": "./src/worker.ts",
 	"compatibility_date": "2026-07-27",
 	"compatibility_flags": ["nodejs_compat"],
