@@ -20,6 +20,10 @@ export function Muted({ children }: { children: ReactNode }) {
 	return <span className={styles.muted}>{children}</span>
 }
 
+export function BrokenTextLink({ children }: { children: ReactNode }) {
+	return <span className={styles.brokenLink}>{children}</span>
+}
+
 export function TextLink({
 	children,
 	href = "/"

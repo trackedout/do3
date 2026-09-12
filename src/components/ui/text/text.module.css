@@ -29,6 +29,12 @@
 	text-underline-position: from-font;
 }
 
+.brokenLink {
+	color: var(--color-muted);
+	text-decoration: line-through;
+	text-decoration-thickness: var(--size-2);
+}
+
 .highlight {
 	background: var(--color-transparent);
 	color: var(--color-secondary);

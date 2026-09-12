@@ -5,7 +5,13 @@ import { Nav } from "~/components/ui/nav"
 import { SearchField } from "~/components/ui/search-field"
 import { SpoilerModeButton } from "~/components/ui/spoiler-mode-button"
 import { Table, type TableColumn } from "~/components/ui/table"
-import { Highlight, MarkerLabel, Muted, TextLink } from "~/components/ui/text"
+import {
+	BrokenTextLink,
+	Highlight,
+	MarkerLabel,
+	Muted,
+	TextLink
+} from "~/components/ui/text"
 import { useState } from "react"
 import { Toolbar } from "~/components/ui/toolbar"
 import { TopBar } from "~/components/ui/top-bar"
@@ -30,272 +36,284 @@ const navItems = [
 	{ label: "Kills", active: false, size: "sm" }
 ] as const
 
-const runs = [
+type RunSource =
+	| { label: string; href: string; state: "linked" }
+	| { label: string; state: "notFound" }
+
+const runs: {
+	hermit: string
+	run: string
+	video: RunSource | null
+	vod: RunSource | null
+	observed: RunSource | null
+	date: Date
+}[] = [
 	{
 		hermit: "Grian",
 		run: "9.2",
-		episode: "HC11 E45",
-		vod: "None",
-		observed: "Tango VOD 9/12",
+		video: { label: "HC11 E45", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Tango VOD 9/12", href: "/", state: "linked" },
 		date: new Date("2026-12-09T00:00:00")
 	},
 	{
 		hermit: "Grian",
 		run: "9.3",
-		episode: "HC11 E45",
-		vod: "None",
-		observed: "Tango VOD 9/12",
+		video: { label: "HC11 E45", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Tango VOD 9/12", href: "/", state: "linked" },
 		date: new Date("2026-12-09T00:00:00")
 	},
 	{
 		hermit: "Grian",
 		run: "9.4",
-		episode: "None",
-		vod: "None",
-		observed: "Tango VOD 9/12",
+		video: null,
+		vod: null,
+		observed: { label: "Tango VOD 9/12", href: "/", state: "linked" },
 		date: new Date("2026-12-09T00:00:00")
 	},
 	{
 		hermit: "TangoTek",
 		run: "10.1",
-		episode: "HC11 E46",
-		vod: "Tango VOD 9/13",
-		observed: "Etho VOD 9/13",
+		video: { label: "HC11 E46", href: "/", state: "linked" },
+		vod: { label: "Tango VOD 9/13", href: "/", state: "linked" },
+		observed: { label: "Etho VOD 9/13", href: "/", state: "linked" },
 		date: new Date("2026-12-10T00:00:00")
 	},
 	{
 		hermit: "Etho",
 		run: "10.2",
-		episode: "HC11 E47",
-		vod: "None",
-		observed: "Tango VOD 9/14",
+		video: { label: "HC11 E47", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Tango VOD 9/14", href: "/", state: "linked" },
 		date: new Date("2026-12-11T00:00:00")
 	},
 	{
 		hermit: "PearlescentMoon",
 		run: "10.3",
-		episode: "HC11 E47",
-		vod: "Pearl VOD 9/14",
-		observed: "Tango VOD 9/14",
+		video: { label: "HC11 E47", href: "/", state: "linked" },
+		vod: { label: "Pearl VOD 9/14", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/14", href: "/", state: "linked" },
 		date: new Date("2026-12-12T00:00:00")
 	},
 	{
 		hermit: "ImpulseSV",
 		run: "10.4",
-		episode: "HC11 E48",
-		vod: "Impulse VOD 9/15",
-		observed: "Skizz VOD 9/15",
+		video: { label: "HC11 E48", href: "/", state: "linked" },
+		vod: { label: "Impulse VOD 9/15", href: "/", state: "linked" },
+		observed: { label: "Skizz VOD 9/15", href: "/", state: "linked" },
 		date: new Date("2026-12-13T00:00:00")
 	},
 	{
 		hermit: "MumboJumbo",
 		run: "10.5",
-		episode: "HC11 E48",
-		vod: "None",
-		observed: "Tango VOD 9/15",
+		video: { label: "HC11 E48", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Tango VOD 9/15", href: "/", state: "linked" },
 		date: new Date("2026-12-14T00:00:00")
 	},
 	{
 		hermit: "Xisuma",
 		run: "10.6",
-		episode: "None",
-		vod: "Xisuma VOD 9/16",
-		observed: "Tango VOD 9/16",
+		video: null,
+		vod: { label: "Xisuma VOD 9/16", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/16", href: "/", state: "linked" },
 		date: new Date("2026-12-15T00:00:00")
 	},
 	{
 		hermit: "Keralis",
 		run: "10.7",
-		episode: "HC11 E49",
-		vod: "None",
-		observed: "Tango VOD 9/16",
+		video: { label: "HC11 E49", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Tango VOD 9/16", href: "/", state: "linked" },
 		date: new Date("2026-12-16T00:00:00")
 	},
 	{
 		hermit: "Docm77",
 		run: "10.8",
-		episode: "HC11 E49",
-		vod: "Doc VOD 9/17",
-		observed: "Tango VOD 9/17",
+		video: { label: "HC11 E49", href: "/", state: "linked" },
+		vod: { label: "Doc VOD 9/17", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/17", href: "/", state: "linked" },
 		date: new Date("2026-12-17T00:00:00")
 	},
 	{
 		hermit: "ZombieCleo",
 		run: "10.9",
-		episode: "HC11 E50",
-		vod: "None",
-		observed: "Cleo VOD 9/17",
+		video: { label: "HC11 E50", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Cleo VOD 9/17", href: "/", state: "linked" },
 		date: new Date("2026-12-18T00:00:00")
 	},
 	{
 		hermit: "FalseSymmetry",
 		run: "11.1",
-		episode: "HC11 E50",
-		vod: "False VOD 9/18",
-		observed: "Tango VOD 9/18",
+		video: { label: "HC11 E50", href: "/", state: "linked" },
+		vod: { label: "False VOD 9/18", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/18", href: "/", state: "linked" },
 		date: new Date("2026-12-19T00:00:00")
 	},
 	{
 		hermit: "GeminiTay",
 		run: "11.2",
-		episode: "HC11 E51",
-		vod: "None",
-		observed: "Gem VOD 9/18",
+		video: { label: "HC11 E51", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Gem VOD 9/18", href: "/", state: "linked" },
 		date: new Date("2026-12-20T00:00:00")
 	},
 	{
 		hermit: "Zedaph",
 		run: "11.3",
-		episode: "None",
-		vod: "Zedaph VOD 9/19",
-		observed: "Tango VOD 9/19",
+		video: null,
+		vod: { label: "Zedaph VOD 9/19", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/19", href: "/", state: "linked" },
 		date: new Date("2026-12-21T00:00:00")
 	},
 	{
 		hermit: "BdoubleO100",
 		run: "11.4",
-		episode: "HC11 E51",
-		vod: "Bdubs VOD 9/19",
-		observed: "Tango VOD 9/19",
+		video: { label: "HC11 E51", href: "/", state: "linked" },
+		vod: { label: "Bdubs VOD 9/19", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/19", href: "/", state: "linked" },
 		date: new Date("2026-12-22T00:00:00")
 	},
 	{
 		hermit: "Cubfan135",
 		run: "11.5",
-		episode: "HC11 E52",
-		vod: "None",
-		observed: "Cub VOD 9/20",
+		video: { label: "HC11 E52", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Cub VOD 9/20", href: "/", state: "linked" },
 		date: new Date("2026-12-23T00:00:00")
 	},
 	{
 		hermit: "Rendog",
 		run: "11.6",
-		episode: "HC11 E52",
-		vod: "Ren VOD 9/20",
-		observed: "Tango VOD 9/20",
+		video: { label: "HC11 E52", href: "/", state: "linked" },
+		vod: { label: "Ren VOD 9/20", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/20", href: "/", state: "linked" },
 		date: new Date("2026-12-24T00:00:00")
 	},
 	{
 		hermit: "GoodTimesWithScar",
 		run: "11.7",
-		episode: "None",
-		vod: "Scar VOD 9/21",
-		observed: "Tango VOD 9/21",
+		video: null,
+		vod: { label: "Scar VOD 9/21", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/21", href: "/", state: "linked" },
 		date: new Date("2026-12-25T00:00:00")
 	},
 	{
 		hermit: "Hypnotizd",
 		run: "11.8",
-		episode: "HC11 E53",
-		vod: "Hypno VOD 9/21",
-		observed: "Tango VOD 9/21",
+		video: { label: "HC11 E53", href: "/", state: "linked" },
+		vod: { label: "Hypno VOD 9/21", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/21", href: "/", state: "linked" },
 		date: new Date("2026-12-26T00:00:00")
 	},
 	{
 		hermit: "JoeHills",
 		run: "11.9",
-		episode: "HC11 E53",
-		vod: "None",
-		observed: "Joe VOD 9/22",
+		video: { label: "HC11 E53", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Joe VOD 9/22", href: "/", state: "linked" },
 		date: new Date("2026-12-27T00:00:00")
 	},
 	{
 		hermit: "Welsknight",
 		run: "12.1",
-		episode: "HC11 E54",
-		vod: "Wels VOD 9/22",
-		observed: "Tango VOD 9/22",
+		video: { label: "HC11 E54", href: "/", state: "linked" },
+		vod: { label: "Wels VOD 9/22", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/22", href: "/", state: "linked" },
 		date: new Date("2026-12-28T00:00:00")
 	},
 	{
 		hermit: "iJevin",
 		run: "12.2",
-		episode: "None",
-		vod: "None",
-		observed: "Jevin VOD 9/23",
+		video: null,
+		vod: null,
+		observed: { label: "Jevin VOD 9/23", href: "/", state: "linked" },
 		date: new Date("2026-12-29T00:00:00")
 	},
 	{
 		hermit: "VintageBeef",
 		run: "12.3",
-		episode: "HC11 E54",
-		vod: "Beef VOD 9/23",
-		observed: "Tango VOD 9/23",
+		video: { label: "HC11 E54", href: "/", state: "linked" },
+		vod: { label: "Beef VOD 9/23", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/23", href: "/", state: "linked" },
 		date: new Date("2026-12-30T00:00:00")
 	},
 	{
 		hermit: "xBCrafted",
 		run: "12.4",
-		episode: "HC11 E55",
-		vod: "None",
-		observed: "xB VOD 9/24",
+		video: { label: "HC11 E55", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "xB VOD 9/24", href: "/", state: "linked" },
 		date: new Date("2026-12-31T00:00:00")
 	},
 	{
 		hermit: "Smallishbeans",
 		run: "12.5",
-		episode: "HC11 E55",
-		vod: "Joel VOD 9/24",
-		observed: "Tango VOD 9/24",
+		video: { label: "HC11 E55", href: "/", state: "linked" },
+		vod: { label: "Joel VOD 9/24", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/24", href: "/", state: "linked" },
 		date: new Date("2027-01-01T00:00:00")
 	},
 	{
 		hermit: "Grian",
 		run: "12.6",
-		episode: "HC11 E56",
-		vod: "None",
-		observed: "Tango VOD 9/25",
+		video: { label: "HC11 E56", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Tango VOD 9/25", href: "/", state: "linked" },
 		date: new Date("2027-01-02T00:00:00")
 	},
 	{
 		hermit: "TangoTek",
 		run: "12.7",
-		episode: "None",
-		vod: "Tango VOD 9/25",
-		observed: "Etho VOD 9/25",
+		video: null,
+		vod: { label: "Tango VOD 9/25", href: "/", state: "linked" },
+		observed: { label: "Etho VOD 9/25", href: "/", state: "linked" },
 		date: new Date("2027-01-03T00:00:00")
 	},
 	{
 		hermit: "Etho",
 		run: "12.8",
-		episode: "HC11 E56",
-		vod: "Etho VOD 9/26",
-		observed: "Tango VOD 9/26",
+		video: { label: "HC11 E56", href: "/", state: "linked" },
+		vod: { label: "Etho VOD 9/26", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/26", href: "/", state: "linked" },
 		date: new Date("2027-01-04T00:00:00")
 	},
 	{
 		hermit: "PearlescentMoon",
 		run: "12.9",
-		episode: "HC11 E57",
-		vod: "None",
-		observed: "Pearl VOD 9/26",
+		video: { label: "HC11 E57", href: "/", state: "linked" },
+		vod: null,
+		observed: { label: "Pearl VOD 9/26", href: "/", state: "linked" },
 		date: new Date("2027-01-05T00:00:00")
 	},
 	{
 		hermit: "ImpulseSV",
 		run: "13.1",
-		episode: "HC11 E57",
-		vod: "Impulse VOD 9/27",
-		observed: "Tango VOD 9/27",
+		video: { label: "HC11 E57", href: "/", state: "linked" },
+		vod: { label: "Impulse VOD 9/27", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/27", href: "/", state: "linked" },
 		date: new Date("2027-01-06T00:00:00")
 	},
 	{
 		hermit: "MumboJumbo",
 		run: "13.2",
-		episode: "None",
-		vod: "None",
-		observed: "Tango VOD 9/27",
+		video: null,
+		vod: null,
+		observed: { label: "Tango VOD 9/27", href: "/", state: "linked" },
 		date: new Date("2027-01-07T00:00:00")
 	},
 	{
 		hermit: "GeminiTay",
 		run: "13.3",
-		episode: "HC11 E58",
-		vod: "Gem VOD 9/28",
-		observed: "Tango VOD 9/28",
+		video: { label: "HC11 E58", href: "/", state: "linked" },
+		vod: { label: "Gem VOD 9/28", href: "/", state: "linked" },
+		observed: { label: "Tango VOD 9/28", href: "/", state: "linked" },
 		date: new Date("2027-01-08T00:00:00")
 	}
 ]
+
 const columns = [
 	{
 		id: "hermit",
@@ -316,27 +334,51 @@ const columns = [
 		width: "number"
 	},
 	{
-		id: "episode",
-		header: "Episode",
-		accessor: (row: (typeof runs)[number]) => row.episode,
-		cell: (value: unknown) =>
-			value === "None" ? (
-				<Muted>None</Muted>
+		id: "video",
+		header: "Video",
+		accessor: (row: (typeof runs)[number]) => row.video?.label ?? "None",
+		cell: (_value: unknown, row) =>
+			row.video ? (
+				row.video.state === "notFound" ? (
+					<BrokenTextLink>{row.video.label}</BrokenTextLink>
+				) : (
+					<TextLink href={row.video.href}>{row.video.label}</TextLink>
+				)
 			) : (
-				<TextLink>{String(value)}</TextLink>
+				<Muted>None</Muted>
 			)
 	},
 	{
 		id: "vod",
 		header: "VOD",
-		accessor: (row: (typeof runs)[number]) => row.vod,
-		cell: (value: unknown) => <Muted>{String(value)}</Muted>
+		accessor: (row: (typeof runs)[number]) => row.vod?.label ?? "None",
+		cell: (_value: unknown, row) =>
+			row.vod ? (
+				row.vod.state === "notFound" ? (
+					<BrokenTextLink>{row.vod.label}</BrokenTextLink>
+				) : (
+					<TextLink href={row.vod.href}>{row.vod.label}</TextLink>
+				)
+			) : (
+				<Muted>None</Muted>
+			)
 	},
 	{
 		id: "observed",
 		header: "Observed",
-		accessor: () => "Tango",
-		cell: (value: unknown) => <TextLink>{String(value)}</TextLink>
+		accessor: (row: (typeof runs)[number]) => row.observed?.label ?? "None",
+		cell: (_value: unknown, row) =>
+			row.observed ? (
+				row.observed.state === "notFound" ? (
+					<BrokenTextLink>{row.observed.label}</BrokenTextLink>
+				) : (
+					<TextLink href={row.observed.href}>
+						{row.observed.label}
+					</TextLink>
+				)
+			) : (
+				<Muted>None</Muted>
+			)
 	},
 	{
 		id: "date",

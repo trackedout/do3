@@ -3,6 +3,7 @@ declare const styles: {
 	readonly marker: string
 	readonly muted: string
 	readonly link: string
+	readonly brokenLink: string
 	readonly highlight: string
 }
 
