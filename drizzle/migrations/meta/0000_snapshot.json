@@ -1,0 +1,55 @@
+{
+	"version": "6",
+	"dialect": "sqlite",
+	"id": "fc819a3e-4c83-4d15-9e78-44f72c757d33",
+	"prevId": "00000000-0000-0000-0000-000000000000",
+	"tables": {
+		"discord_videos": {
+			"name": "discord_videos",
+			"columns": {
+				"channel_id": {
+					"name": "channel_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"video_id": {
+					"name": "video_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				}
+			},
+			"indexes": {
+				"discord_videos_channel_video_unique": {
+					"name": "discord_videos_channel_video_unique",
+					"columns": ["channel_id", "video_id"],
+					"isUnique": true
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"checkConstraints": {}
+		}
+	},
+	"views": {},
+	"enums": {},
+	"_meta": {
+		"schemas": {},
+		"tables": {},
+		"columns": {}
+	},
+	"internal": {
+		"indexes": {}
+	}
+}
