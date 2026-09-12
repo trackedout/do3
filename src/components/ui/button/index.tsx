@@ -11,6 +11,7 @@ const buttonClass = cva(styles.button, {
 			quiet: styles.quiet,
 			active: styles.active,
 			warning: styles.warning,
+			muted: styles.muted,
 			disabled: styles.disabled
 		},
 		width: {

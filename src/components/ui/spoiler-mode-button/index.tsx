@@ -6,7 +6,7 @@ export function SpoilerModeButton() {
 
 	return (
 		<Button
-			intent={spoilerMode ? "warning" : "disabled"}
+			intent={spoilerMode ? "warning" : "muted"}
 			width="lg"
 			aria-pressed={spoilerMode}
 			onClick={toggleSpoilerMode}
