@@ -86,7 +86,7 @@ export function Table<TData extends RowData>({
 			{summary ? <div className={styles.summary}>{summary}</div> : null}
 			<ScrollArea.Root className={styles.scrollRoot}>
 				<ScrollArea.Viewport className={styles.viewport}>
-					<ScrollArea.Content>
+					<ScrollArea.Content className={styles.scrollContent}>
 						<table className={styles.table} aria-label={label}>
 							<thead>
 								{table.getHeaderGroups().map((headerGroup) => (

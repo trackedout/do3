@@ -37,6 +37,10 @@
 	height: var(--size-full);
 }
 
+.scrollContent {
+	padding-right: calc(var(--size-scrollbar) + var(--space-16));
+}
+
 .table {
 	width: var(--size-full);
 	border-collapse: collapse;
@@ -56,8 +60,12 @@
 }
 
 .table thead th {
+	position: sticky;
+	top: var(--size-0);
+	z-index: 1;
 	height: var(--size-55);
 	padding: var(--space-15) var(--space-16);
+	background: var(--color-surface);
 	color: var(--color-muted);
 	font-size: var(--font-size-18);
 	font-weight: var(--font-weight-medium);
@@ -127,7 +135,7 @@
 
 .scrollbar {
 	position: absolute;
-	top: var(--space-scrollbar-inset);
+	top: calc(var(--size-55) + var(--space-scrollbar-inset));
 	right: var(--space-scrollbar-inset);
 	bottom: var(--space-scrollbar-inset);
 	display: flex;

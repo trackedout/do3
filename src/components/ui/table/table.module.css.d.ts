@@ -3,6 +3,7 @@ declare const styles: {
 	readonly summary: string
 	readonly scrollRoot: string
 	readonly viewport: string
+	readonly scrollContent: string
 	readonly table: string
 	readonly cell: string
 	readonly sortButton: string

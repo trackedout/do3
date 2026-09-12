@@ -335,7 +335,7 @@ const columns = [
 	{
 		id: "observed",
 		header: "Observed",
-		accessor: (row: (typeof runs)[number]) => row.observed,
+		accessor: () => "Tango",
 		cell: (value: unknown) => <TextLink>{String(value)}</TextLink>
 	},
 	{

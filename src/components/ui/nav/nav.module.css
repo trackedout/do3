@@ -1,6 +1,5 @@
 .nav {
 	display: grid;
-	height: var(--layout-nav-height);
 	grid-template-columns: var(--layout-nav-columns);
 	align-items: end;
 	justify-items: center;
