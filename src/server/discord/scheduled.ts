@@ -84,6 +84,6 @@ const sendAlert = async (
 
 	await channel.send({
 		content: `<@&${roles[type]}> from ${video.author}`,
-		embeds: [new HermitVideo(video)]
+		components: [new HermitVideo(video)]
 	})
 }

@@ -91,7 +91,7 @@ export class LatestVideoCommand extends Command {
 			content: `Here is the latest video from **${hermit.name}${
 				secondChannel ? "'s** second channel!" : "**"
 			}!`,
-			embeds: [new HermitVideo(data)]
+			components: [new HermitVideo(data)]
 		})
 	}
 }
